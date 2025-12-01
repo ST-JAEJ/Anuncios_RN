@@ -10,18 +10,25 @@
       padding: 20px;
       font-family: "Calibri", sans-serif;
       color: #333333;
+      position: relative;
+      overflow-x: hidden;
     }
+
     .container {
       max-width: 800px;
       margin: 0 auto;
       text-align: center;
+      position: relative;
+      z-index: 2;
     }
+
     .subtitle {
       font-size: 1em;
       color: #444444;
       margin-top: 2px;
       margin-bottom: 10px;
     }
+
     .logo,
     .imagen-principal {
       display: block;
@@ -29,16 +36,60 @@
       max-width: 100%;
       height: auto;
     }
-    /* Nota en Calibri más chica */
+
     .nota {
-      font-size: 0.8em;      /* más pequeño */
-      color: #666666;         /* gris sutil */
+      font-size: 0.8em;
+      color: #666666;
       margin-top: 5px;
       font-style: italic;
     }
+
+    /* Animación de nieve */
+    @keyframes nieve {
+      0% { transform: translateY(-10vh); opacity: 0; }
+      100% { transform: translateY(100vh); opacity: 0.9; }
+    }
+
+    .nieve {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .nieve span {
+      position: absolute;
+      top: -10vh;
+      color: white;
+      font-size: 1.2rem;
+      animation: nieve linear infinite;
+      opacity: 0.8;
+    }
   </style>
 </head>
+
 <body>
+
+  <!-- NIEVE -->
+  <div class="nieve"></div>
+
+  <script>
+    const contenedor = document.querySelector(".nieve");
+    for (let i = 0; i < 25; i++) {
+      const copo = document.createElement("span");
+      copo.innerHTML = "🎁";
+      copo.style.left = Math.random() * 100 + "vw";
+      copo.style.animationDuration = (4 + Math.random() * 6) + "s";
+      copo.style.animationDelay = Math.random() * 5 + "s";
+      copo.style.fontSize = (0.8 + Math.random() * 1.2) + "rem";
+      contenedor.appendChild(copo);
+    }
+  </script>
+
   <div class="container">
     <img
       src="logo JAEJ JF 50p.png"
@@ -55,10 +106,7 @@
       class="imagen-principal"
       style="max-width: 100%; margin-top: 2px;"
     />
-
-    <!-- Nota al pie -->
-    <!--<p class="nota">*Nota: Este meme es solo humor. JAEJ repudia toda forma de burla o discriminación.*</p>-->
-    
   </div>
+
 </body>
 </html>
