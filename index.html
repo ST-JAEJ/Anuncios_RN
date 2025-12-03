@@ -58,7 +58,6 @@
     .navidad-voladora span {
   position: absolute;
   left: 100vw;    /* TODOS arrancan justo afuera del borde derecho */
-  right: -10vw;
   font-size: 2.2rem;
   animation: volar linear infinite;
   white-space: nowrap;   /* <─ clave para que no los apile */
@@ -86,10 +85,10 @@
     item.style.animationDuration = (6 + Math.random() * 10) + "s";
 
     // delay aleatorio
-    item.style.animationDelay = Math.random() * 10 + "s";
+    item.style.animationDelay = Math.random() * 20 + "s";
 
     // tamaño aleatorio
-    item.style.fontSize = (1 + Math.random() * 2.5) + "rem";
+    item.style.fontSize = (1 + Math.random() * 2) + "rem";
 
     capa.appendChild(item);
   }
@@ -115,5 +114,6 @@
 
 </body>
 </html>
+
 
 
