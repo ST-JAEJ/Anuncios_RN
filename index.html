@@ -74,7 +74,7 @@
   const iconos = ["🦌🦌🦌🎅"];
   const capa = document.querySelector(".navidad-voladora");
 
-  for (let i = 0; i < 3; i++) {              // podés ajustar la cantidad acá
+  for (let i = 0; i < 1; i++) {              // podés ajustar la cantidad acá
     const item = document.createElement("span");
     item.innerHTML = iconos[Math.random() * iconos.length | 0];
 
@@ -85,7 +85,7 @@
     item.style.animationDuration = (6 + Math.random() * 10) + "s";
 
     // delay aleatorio
-    item.style.animationDelay = Math.random() * 20 + "s";
+    item.style.animationDelay = Math.random() * 2 + "s";
 
     // tamaño aleatorio
     item.style.fontSize = (1 + Math.random() * 2) + "rem";
@@ -114,6 +114,7 @@
 
 </body>
 </html>
+
 
 
 
