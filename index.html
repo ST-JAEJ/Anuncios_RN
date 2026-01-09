@@ -37,188 +37,97 @@
       height: auto;
     }
 
-    /* ANIMACIÓN DE RENOS / PAPÁ NOEL — ahora derecha → izquierda */
-    @keyframes volar {
-  0%   { transform: translateX(0); opacity: 0; }
-  10%  { opacity: 0.7; }
-  90%  { opacity: 0.7; }
-  100% { transform: translateX(-120vw); opacity: 0; }
-}
-
-    .navidad-voladora {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vw;
-      pointer-events: none;
-      overflow: hidden;
-      z-index: 1;
+    /* Cuenta regresiva */
+    .countdown {
+      margin-top: 20px;
+      padding: 16px;
+      border-radius: 12px;
+      background: #f5f5f5;
+      display: inline-block;
     }
 
-    .navidad-voladora span {
-  position: absolute;
-  left: 100vw;    /* TODOS arrancan justo afuera del borde derecho */
-  font-size: 2.2rem;
-  animation: volar linear infinite;
-  white-space: nowrap;   /* <─ clave para que no los apile */
-}
+    .countdown-title {
+      font-size: 1.1em;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
 
-.countdown-card { display: none !important; }    /* para ocultar cuenta regresiva, borrar linea para mostrar cuenta regresiva */
+    .countdown-time {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      font-size: 1.4em;
+      font-weight: 700;
+    }
+
+    .countdown-item {
+      text-align: center;
+    }
+
+    .countdown-item span {
+      display: block;
+      font-size: 0.6em;
+      font-weight: 400;
+      color: #666;
+    }
+
+    /* Si querés ocultarla: descomentá esta línea */
+    /* .countdown { display: none !important; } */
   </style>
 </head>
 
 <body>
-
-  
-
-  
-  <!-- RENOS Y PAPÁ NOEL -->
-  <!--<div class="navidad-voladora"></div>
-
-<script>
-  const iconos = ["🦌🦌🦌🎅"];
-  const capa = document.querySelector(".navidad-voladora");
-
-  for (let i = 0; i < 6; i++) {              // podés ajustar la cantidad acá
-    const item = document.createElement("span");
-    item.innerHTML = iconos[Math.random() * iconos.length | 0];
-
-    // altura aleatoria
-    item.style.top = Math.random() * 90 + "vh";
-
-    // velocidad aleatoria
-    item.style.animationDuration = (6 + Math.random() * 10) + "s";
-
-    // delay aleatorio
-    item.style.animationDelay = Math.random() * 20 + "s";
-
-    // tamaño aleatorio
-    item.style.fontSize = (1 + Math.random() * 1) + "rem";
-
-    capa.appendChild(item);
-  }
-</script>-->
-
   <div class="container">
-    <img
-      src="logo JAEJ JF 50p.png"
-      alt="Logo de la Empresa"
-      class="logo"
-      style="max-width: 200px;"
-    />
-
+    <img src="logo JAEJ JF 50p.png" alt="Logo de la Empresa" class="logo" style="max-width: 200px;" />
     <p class="subtitle">Tecnologías para la salud</p>
 
-
-<!-- Cuenta regresiva 2026 -->
-  <style>
-  .countdown {
-    margin-top: 20px;
-    padding: 16px;
-    border-radius: 12px;
-    background: #f5f5f5;
-    display: inline-block;
-  }
-
-  .countdown-title {
-    font-size: 1.1em;
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
-
-  .countdown-time {
-    display: flex;
-    gap: 16px;
-    justify-content: center;
-    font-size: 1.4em;
-    font-weight: 700;
-  }
-
-  .countdown-item {
-    text-align: center;
-  }
-
-  .countdown-item span {
-    display: block;
-    font-size: 0.6em;
-    font-weight: 400;
-    color: #666;
-  }
-</style>
-
-<div class="container">
-  <div class="countdown">
-    <div class="countdown-title">Cuenta regresiva para 2026</div>
-    <div class="countdown-time" id="countdown">
-      <div class="countdown-item">
-        <div id="days">0</div><span>días</span>
-      </div>
-      <div class="countdown-item">
-        <div id="hours">0</div><span>horas</span>
-      </div>
-      <div class="countdown-item">
-        <div id="minutes">0</div><span>min</span>
-      </div>
-      <div class="countdown-item">
-        <div id="seconds">0</div><span>seg</span>
+    <div class="countdown">
+      <div class="countdown-title">Cuenta regresiva para 2026</div>
+      <div class="countdown-time" id="countdown">
+        <div class="countdown-item"><div id="days">0</div><span>días</span></div>
+        <div class="countdown-item"><div id="hours">00</div><span>horas</span></div>
+        <div class="countdown-item"><div id="minutes">00</div><span>min</span></div>
+        <div class="countdown-item"><div id="seconds">00</div><span>seg</span></div>
       </div>
     </div>
+
+    <img src="OEC ELITE T2.png" alt="Imagen Principal" class="imagen-principal" style="max-width: 100%; margin-top: 2px;" />
   </div>
-</div>
 
-<script>
-  const targetDate = new Date("2026-01-01T00:00:00").getTime();
+  <script>
+    const targetDate = new Date("2026-01-01T00:00:00").getTime();
 
-  function updateCountdown() {
-    const now = new Date().getTime();
-    const diff = targetDate - now;
+    function updateCountdown() {
+      const now = Date.now();
+      const diff = targetDate - now;
 
-    if (diff <= 0) {
-      document.getElementById("countdown").innerHTML =
-        "<strong>¡Feliz Año Nuevo 2026!</strong>";
-      return;
+      const el = (id) => document.getElementById(id);
+      const elCountdown = el("countdown");
+      const elDays = el("days");
+      const elHours = el("hours");
+      const elMinutes = el("minutes");
+      const elSeconds = el("seconds");
+
+      if (!elCountdown || !elDays || !elHours || !elMinutes || !elSeconds) return;
+
+      if (diff <= 0) {
+        elCountdown.innerHTML = "<strong>¡Feliz Año Nuevo 2026!</strong>";
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      elDays.textContent = days;
+      elHours.textContent = String(hours).padStart(2, "0");
+      elMinutes.textContent = String(minutes).padStart(2, "0");
+      elSeconds.textContent = String(seconds).padStart(2, "0");
     }
 
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-    const seconds = Math.floor((diff / 1000) % 60);
-
-    document.getElementById("days").textContent = days;
-    document.getElementById("hours").textContent = hours.toString().padStart(2, "0");
-    document.getElementById("minutes").textContent = minutes.toString().padStart(2, "0");
-    document.getElementById("seconds").textContent = seconds.toString().padStart(2, "0");
-  }
-
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
-</script>
-
-
-
-    <img
-      src="OEC ELITE T2.png" 
-      alt="Imagen Principal"
-      class="imagen-principal"
-      style="max-width: 100%; margin-top: 2px;"
-    />
-  </div>
-
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
